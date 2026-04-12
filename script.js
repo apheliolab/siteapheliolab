@@ -61,6 +61,15 @@ if (leadForm) {
       return;
     }
 
+    const honeypot = leadForm.querySelector('input[name="company_site"]');
+
+    if (honeypot && honeypot.value.trim()) {
+      window.setTimeout(() => {
+        window.location.href = "/sucesso";
+      }, 500);
+      return;
+    }
+
     if (submitButton) {
       submitButton.disabled = true;
       submitButton.textContent = "Enviando...";

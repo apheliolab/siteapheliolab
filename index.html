@@ -471,21 +471,25 @@
             method="post"
             aria-label="Formulário de diagnóstico"
           >
+            <label class="form-honeypot" aria-hidden="true">
+              Site da empresa
+              <input type="text" name="company_site" tabindex="-1" autocomplete="off" />
+            </label>
             <label>
               Nome
-              <input type="text" name="nome" placeholder="Seu nome" required />
+              <input type="text" name="nome" placeholder="Seu nome" autocomplete="name" maxlength="80" required />
             </label>
             <label>
               WhatsApp
-              <input type="tel" name="whatsapp" placeholder="(00) 00000-0000" required />
+              <input type="tel" name="whatsapp" placeholder="(00) 00000-0000" autocomplete="tel" inputmode="tel" maxlength="24" required />
             </label>
             <label>
               Email
-              <input type="email" name="email" placeholder="voce@empresa.com" required />
+              <input type="email" name="email" placeholder="voce@empresa.com" autocomplete="email" maxlength="120" required />
             </label>
             <label>
               Cidade
-              <input type="text" name="cidade" placeholder="Sua cidade" />
+              <input type="text" name="cidade" placeholder="Sua cidade" autocomplete="address-level2" maxlength="80" />
             </label>
             <label>
               Qual sua necessidade?
@@ -527,7 +531,7 @@
         </div>
 
         <address class="footer-contact" aria-label="Informações de contato">
-          <a href="https://www.instagram.com/apheli0lab/" target="_blank" rel="noreferrer">
+          <a href="https://www.instagram.com/apheli0lab/" target="_blank" rel="noopener noreferrer">
             <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
               <rect x="4" y="4" width="16" height="16" rx="4" />
               <circle cx="12" cy="12" r="3.5" />
@@ -535,7 +539,7 @@
             </svg>
             <span>Instagram: @apheli0lab</span>
           </a>
-          <a href="https://wa.me/5535999096959" target="_blank" rel="noreferrer">
+          <a href="https://wa.me/5535999096959" target="_blank" rel="noopener noreferrer">
             <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
               <path d="M5.4 18.6 6.5 15A7.4 7.4 0 1 1 9 17.5l-3.6 1.1Z" />
               <path d="M9.6 8.7c.2-.4.4-.4.7-.4h.5c.2 0 .4.1.5.4l.6 1.4c.1.3 0 .5-.2.7l-.4.4c.7 1.2 1.6 2.1 2.8 2.8l.5-.5c.2-.2.4-.3.7-.2l1.4.6c.3.1.4.3.4.6v.5c0 .3-.1.5-.4.7-.4.2-.9.3-1.4.3-3.5 0-7.1-3.6-7.1-7.1 0-.5.1-1 .4-1.4Z" />
