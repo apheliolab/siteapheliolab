@@ -50,11 +50,16 @@ document.querySelectorAll('a[href^="#"]').forEach((link) => {
 const leadForm = document.querySelector(".lead-form");
 
 if (leadForm) {
+  const configWebhookUrl = window.APHELIO_CONFIG && window.APHELIO_CONFIG.webhookUrl;
   const submitButton = leadForm.querySelector('button[type="submit"]');
   const statusElement = leadForm.querySelector(".form-status");
   const whatsappInput = leadForm.querySelector('input[name="whatsapp"]');
   const countryCodeSelect = leadForm.querySelector("#country-code");
   const defaultButtonText = submitButton ? submitButton.textContent : "";
+
+  if (configWebhookUrl) {
+    leadForm.action = configWebhookUrl;
+  }
 
   const formatWhatsappLocal = (value) => {
     const digits = value.replace(/\D/g, "").slice(0, 11);
