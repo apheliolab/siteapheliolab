@@ -26,7 +26,7 @@
     <script>
       document.documentElement.classList.add("js");
     </script>
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="styles.css?v=20260413-2" />
   </head>
   <body>
     <noscript>
@@ -471,16 +471,12 @@
             method="post"
             aria-label="Formulário de diagnóstico"
           >
-            <label class="form-honeypot" aria-hidden="true">
-              Site da empresa
-              <input type="text" name="company_site" tabindex="-1" autocomplete="off" />
-            </label>
             <label>
               Nome
               <input type="text" name="nome" placeholder="Seu nome" autocomplete="name" maxlength="80" required />
             </label>
-            <label>
-              WhatsApp
+            <div class="form-field">
+              <span class="field-label">WhatsApp</span>
               <div class="phone-field">
                 <select class="country-code-select" id="country-code" aria-label="Código do país" required>
                   <option value="55" selected>🇧🇷 +55</option>
@@ -515,7 +511,7 @@
                   required
                 />
               </div>
-            </label>
+            </div>
             <label>
               Email
               <input type="email" name="email" placeholder="voce@empresa.com" autocomplete="email" maxlength="120" required />
@@ -597,6 +593,6 @@
       </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="script.js?v=20260413-2"></script>
   </body>
 </html>

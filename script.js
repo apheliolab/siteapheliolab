@@ -59,8 +59,12 @@ if (leadForm) {
   const formatWhatsappLocal = (value) => {
     const digits = value.replace(/\D/g, "").slice(0, 11);
 
+    if (digits.length === 0) {
+      return "";
+    }
+
     if (digits.length <= 2) {
-      return digits;
+      return `(${digits}${digits.length === 2 ? ")" : ""}`;
     }
 
     return `(${digits.slice(0, 2)})${digits.slice(2)}`;
@@ -80,15 +84,6 @@ if (leadForm) {
     }
 
     if (!leadForm.reportValidity()) {
-      return;
-    }
-
-    const honeypot = leadForm.querySelector('input[name="company_site"]');
-
-    if (honeypot && honeypot.value.trim()) {
-      window.setTimeout(() => {
-        window.location.href = "/sucesso";
-      }, 500);
       return;
     }
 
