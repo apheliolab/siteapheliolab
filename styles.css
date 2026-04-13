@@ -1116,6 +1116,18 @@ h3 {
   transition: border-color 180ms ease, box-shadow 180ms ease, background 180ms ease;
 }
 
+.phone-field {
+  display: grid;
+  grid-template-columns: minmax(110px, 0.34fr) 1fr;
+  gap: 10px;
+}
+
+.country-code-select {
+  cursor: pointer;
+  font-weight: 850;
+  text-align: center;
+}
+
 .lead-form input::placeholder {
   color: #777;
 }
@@ -1758,6 +1770,11 @@ h3 {
 
   .lead-form {
     padding: 18px;
+  }
+
+  .phone-field {
+    grid-template-columns: minmax(96px, 0.38fr) 1fr;
+    gap: 8px;
   }
 
   .button {

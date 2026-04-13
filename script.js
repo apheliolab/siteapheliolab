@@ -53,11 +53,22 @@ if (leadForm) {
   const submitButton = leadForm.querySelector('button[type="submit"]');
   const statusElement = leadForm.querySelector(".form-status");
   const whatsappInput = leadForm.querySelector('input[name="whatsapp"]');
+  const countryCodeSelect = leadForm.querySelector("#country-code");
   const defaultButtonText = submitButton ? submitButton.textContent : "";
+
+  const formatWhatsappLocal = (value) => {
+    const digits = value.replace(/\D/g, "").slice(0, 11);
+
+    if (digits.length <= 2) {
+      return digits;
+    }
+
+    return `(${digits.slice(0, 2)})${digits.slice(2)}`;
+  };
 
   if (whatsappInput) {
     whatsappInput.addEventListener("input", () => {
-      whatsappInput.value = whatsappInput.value.replace(/\D/g, "").slice(0, 13);
+      whatsappInput.value = formatWhatsappLocal(whatsappInput.value);
     });
   }
 
@@ -65,6 +76,10 @@ if (leadForm) {
     event.preventDefault();
 
     if (!leadForm.action) {
+      return;
+    }
+
+    if (!leadForm.reportValidity()) {
       return;
     }
 
@@ -91,8 +106,9 @@ if (leadForm) {
 
     try {
       const formData = new FormData(leadForm);
-      const whatsappDigits = String(formData.get("whatsapp") || "").replace(/\D/g, "");
-      formData.set("whatsapp", whatsappDigits);
+      const countryCode = countryCodeSelect ? countryCodeSelect.value.replace(/\D/g, "") : "55";
+      const localWhatsappDigits = String(formData.get("whatsapp") || "").replace(/\D/g, "");
+      formData.set("whatsapp", `${countryCode}${localWhatsappDigits}`);
 
       await fetch(leadForm.action, {
         method: "POST",
