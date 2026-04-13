@@ -53,7 +53,8 @@ if (leadForm) {
   const configWebhookUrl = window.APHELIO_CONFIG && window.APHELIO_CONFIG.webhookUrl;
   const submitButton = leadForm.querySelector('button[type="submit"]');
   const statusElement = leadForm.querySelector(".form-status");
-  const whatsappInput = leadForm.querySelector('input[name="whatsapp"]');
+  const whatsappInput = leadForm.querySelector('input[name="whatsapp_local"]');
+  const whatsappFullInput = leadForm.querySelector('input[name="whatsapp"]');
   const countryCodeSelect = leadForm.querySelector("#country-code");
   const defaultButtonText = submitButton ? submitButton.textContent : "";
 
@@ -102,27 +103,19 @@ if (leadForm) {
       statusElement.textContent = "Enviando seus dados com segurança...";
     }
 
-    let sent = false;
+    const countryCode = countryCodeSelect ? countryCodeSelect.value.replace(/\D/g, "") : "55";
+    const localWhatsappDigits = whatsappInput ? whatsappInput.value.replace(/\D/g, "") : "";
+
+    if (whatsappFullInput) {
+      whatsappFullInput.value = `${countryCode}${localWhatsappDigits}`;
+    }
 
     try {
-      const formData = new FormData(leadForm);
-      const countryCode = countryCodeSelect ? countryCodeSelect.value.replace(/\D/g, "") : "55";
-      const localWhatsappDigits = String(formData.get("whatsapp") || "").replace(/\D/g, "");
-      formData.set("whatsapp", `${countryCode}${localWhatsappDigits}`);
-
-      await fetch(leadForm.action, {
-        method: "POST",
-        mode: "no-cors",
-        body: new URLSearchParams(formData),
-        keepalive: true,
-      });
+      HTMLFormElement.prototype.submit.call(leadForm);
 
       if (window.fbq) {
         window.fbq("track", "Lead");
       }
-
-      leadForm.reset();
-      sent = true;
 
       if (statusElement) {
         statusElement.className = "form-status success";
@@ -130,6 +123,7 @@ if (leadForm) {
       }
 
       window.setTimeout(() => {
+        leadForm.reset();
         window.location.href = "/sucesso";
       }, 700);
     } catch (error) {
@@ -137,8 +131,7 @@ if (leadForm) {
         statusElement.className = "form-status error";
         statusElement.textContent = "Não foi possível enviar agora. Tente novamente em alguns instantes.";
       }
-    } finally {
-      if (submitButton && !sent) {
+      if (submitButton) {
         submitButton.disabled = false;
         submitButton.textContent = defaultButtonText;
       }

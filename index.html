@@ -26,7 +26,7 @@
     <script>
       document.documentElement.classList.add("js");
     </script>
-    <link rel="stylesheet" href="styles.css?v=20260413-2" />
+    <link rel="stylesheet" href="styles.css?v=20260413-4" />
   </head>
   <body>
     <noscript>
@@ -469,6 +469,7 @@
             class="lead-form"
             action="https://aphelio-landing-n8n.wxugbb.easypanel.host/webhook/formul%C3%A1rio"
             method="post"
+            target="lead-submit-frame"
             aria-label="Formulário de diagnóstico"
           >
             <label>
@@ -500,7 +501,7 @@
                 </select>
                 <input
                   type="tel"
-                  name="whatsapp"
+                  name="whatsapp_local"
                   placeholder="(35)999999999"
                   autocomplete="tel"
                   inputmode="numeric"
@@ -510,6 +511,7 @@
                   title="Digite o DDD entre parênteses e o número com 9 dígitos. Exemplo: (35)999999999"
                   required
                 />
+                <input type="hidden" name="whatsapp" id="whatsapp-full" />
               </div>
             </div>
             <label>
@@ -538,6 +540,7 @@
             </button>
             <p class="form-status" role="status" aria-live="polite"></p>
           </form>
+          <iframe class="submit-frame" name="lead-submit-frame" title="Envio do formulário"></iframe>
         </div>
       </section>
     </main>
@@ -593,7 +596,7 @@
       </div>
     </footer>
 
-    <script src="config.js?v=20260413-3"></script>
-    <script src="script.js?v=20260413-3"></script>
+    <script src="config.js?v=20260413-4"></script>
+    <script src="script.js?v=20260413-4"></script>
   </body>
 </html>
