@@ -467,7 +467,7 @@
 
           <form
             class="lead-form"
-            action="https://landing-apheliolab-n8n.wxugbb.easypanel.host/webhook-test/formulário"
+            action="https://landing-apheliolab-n8n.wxugbb.easypanel.host/webhook/formulário"
             method="post"
             aria-label="Formulário de diagnóstico"
           >
@@ -480,8 +480,20 @@
               <input type="text" name="nome" placeholder="Seu nome" autocomplete="name" maxlength="80" required />
             </label>
             <label>
-              WhatsApp
-              <input type="tel" name="whatsapp" placeholder="(00) 00000-0000" autocomplete="tel" inputmode="tel" maxlength="24" required />
+              WhatsApp com código do país e DDD
+              <input
+                type="tel"
+                name="whatsapp"
+                placeholder="5535992496959"
+                autocomplete="tel"
+                inputmode="numeric"
+                minlength="13"
+                maxlength="13"
+                pattern="55[0-9]{11}"
+                title="Digite apenas números, começando com 55, DDD e número. Exemplo: 5535992496959"
+                required
+              />
+              <span class="form-hint">Use apenas números. Exemplo: 5535992496959</span>
             </label>
             <label>
               Email

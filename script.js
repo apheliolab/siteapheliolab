@@ -52,7 +52,14 @@ const leadForm = document.querySelector(".lead-form");
 if (leadForm) {
   const submitButton = leadForm.querySelector('button[type="submit"]');
   const statusElement = leadForm.querySelector(".form-status");
+  const whatsappInput = leadForm.querySelector('input[name="whatsapp"]');
   const defaultButtonText = submitButton ? submitButton.textContent : "";
+
+  if (whatsappInput) {
+    whatsappInput.addEventListener("input", () => {
+      whatsappInput.value = whatsappInput.value.replace(/\D/g, "").slice(0, 13);
+    });
+  }
 
   leadForm.addEventListener("submit", async (event) => {
     event.preventDefault();
@@ -83,10 +90,14 @@ if (leadForm) {
     let sent = false;
 
     try {
+      const formData = new FormData(leadForm);
+      const whatsappDigits = String(formData.get("whatsapp") || "").replace(/\D/g, "");
+      formData.set("whatsapp", whatsappDigits);
+
       await fetch(leadForm.action, {
         method: "POST",
         mode: "no-cors",
-        body: new URLSearchParams(new FormData(leadForm)),
+        body: new URLSearchParams(formData),
         keepalive: true,
       });
 

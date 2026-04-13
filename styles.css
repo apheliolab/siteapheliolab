@@ -1120,6 +1120,13 @@ h3 {
   color: #777;
 }
 
+.form-hint {
+  color: #6d6d6d;
+  font-size: 0.78rem;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
 .lead-form input:focus,
 .lead-form select:focus {
   border-color: rgba(206, 103, 54, 0.78);
