@@ -51,15 +51,24 @@ const leadForm = document.querySelector(".lead-form");
 
 if (leadForm) {
   const configWebhookUrl = window.APHELIO_CONFIG && window.APHELIO_CONFIG.webhookUrl;
+  const whatsappRedirectUrl =
+    (window.APHELIO_CONFIG && window.APHELIO_CONFIG.whatsappRedirectUrl) || "https://wa.me/5535999096959";
   const submitButton = leadForm.querySelector('button[type="submit"]');
   const statusElement = leadForm.querySelector(".form-status");
   const whatsappInput = leadForm.querySelector('input[name="whatsapp_local"]');
   const whatsappFullInput = leadForm.querySelector('input[name="whatsapp"]');
   const countryCodeSelect = leadForm.querySelector("#country-code");
+  const successModal = document.querySelector("#success-modal");
+  const whatsappCount = document.querySelector("#whatsapp-count");
+  const whatsappNow = document.querySelector("#whatsapp-now");
   const defaultButtonText = submitButton ? submitButton.textContent : "";
 
   if (configWebhookUrl) {
     leadForm.action = configWebhookUrl;
+  }
+
+  if (whatsappNow) {
+    whatsappNow.href = whatsappRedirectUrl;
   }
 
   const formatWhatsappLocal = (value) => {
@@ -119,13 +128,33 @@ if (leadForm) {
 
       if (statusElement) {
         statusElement.className = "form-status success";
-        statusElement.textContent = "Diagnóstico enviado. Redirecionando...";
+        statusElement.textContent = "Diagnóstico enviado.";
       }
 
-      window.setTimeout(() => {
-        leadForm.reset();
-        window.location.href = "/sucesso";
-      }, 700);
+      if (successModal) {
+        successModal.classList.add("is-visible");
+        successModal.setAttribute("aria-hidden", "false");
+      }
+
+      let seconds = 3;
+
+      if (whatsappCount) {
+        whatsappCount.textContent = seconds;
+      }
+
+      const countdown = window.setInterval(() => {
+        seconds -= 1;
+
+        if (whatsappCount) {
+          whatsappCount.textContent = seconds;
+        }
+
+        if (seconds <= 0) {
+          window.clearInterval(countdown);
+          leadForm.reset();
+          window.location.href = whatsappRedirectUrl;
+        }
+      }, 1000);
     } catch (error) {
       if (statusElement) {
         statusElement.className = "form-status error";
