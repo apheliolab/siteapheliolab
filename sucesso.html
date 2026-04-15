@@ -12,7 +12,7 @@
     <link rel="icon" type="image/png" href="assets/favicon.png" />
     <link rel="apple-touch-icon" href="assets/favicon.png" />
     <link rel="preload" as="image" href="assets/aphelio-background.jpg" />
-    <link rel="stylesheet" href="styles.css?v=20260413-6" />
+    <link rel="stylesheet" href="styles.css?v=20260415-1" />
   </head>
   <body class="success-page">
     <main class="success-main" aria-labelledby="success-title">
@@ -48,21 +48,22 @@
 
         <div class="success-actions" aria-label="Próximos passos">
           <a class="button primary" href="/">Voltar para o site</a>
-          <a class="success-whatsapp" href="https://wa.me/5535999096959" target="_blank" rel="noopener noreferrer">
+          <a class="success-whatsapp" href="https://wa.me/5535992496959" target="_blank" rel="noopener noreferrer">
             Falar agora no WhatsApp
           </a>
         </div>
 
         <p class="success-trust">Atendimento rápido e personalizado pela Aphelio Lab</p>
         <p class="success-countdown">
-          Você será redirecionado automaticamente em <span id="success-count">12</span> segundos...
+          Você será encaminhado para o WhatsApp em <span id="success-count">10</span> segundos...
         </p>
       </section>
     </main>
 
     <script>
       const countElement = document.getElementById("success-count");
-      let seconds = 12;
+      const whatsappUrl = "https://wa.me/5535992496959";
+      let seconds = 10;
 
       const countdown = window.setInterval(() => {
         seconds -= 1;
@@ -73,7 +74,7 @@
 
         if (seconds <= 0) {
           window.clearInterval(countdown);
-          window.location.href = "/";
+          window.location.href = whatsappUrl;
         }
       }, 1000);
     </script>
