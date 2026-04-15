@@ -77,16 +77,22 @@ if (leadForm) {
     });
   }
 
-  leadForm.addEventListener("submit", async (event) => {
+  window.handleLeadSubmit = async (event) => {
     event.preventDefault();
 
+    if (leadForm.dataset.submitting === "true") {
+      return false;
+    }
+
     if (!leadForm.action) {
-      return;
+      return false;
     }
 
     if (!leadForm.reportValidity()) {
-      return;
+      return false;
     }
+
+    leadForm.dataset.submitting = "true";
 
     if (submitButton) {
       submitButton.disabled = true;
@@ -136,6 +142,9 @@ if (leadForm) {
         submitButton.disabled = false;
         submitButton.textContent = defaultButtonText;
       }
+      leadForm.dataset.submitting = "false";
     }
-  });
+    
+    return false;
+  };
 }

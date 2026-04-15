@@ -469,6 +469,7 @@
             class="lead-form"
             action="https://aphelio-n8n.6pecl2.easypanel.host/webhook/form"
             method="post"
+            onsubmit="window.handleLeadSubmit && window.handleLeadSubmit(event); return false;"
             aria-label="Formulário de diagnóstico"
           >
             <label>
@@ -594,6 +595,6 @@
       </div>
     </footer>
 
-    <script src="script.js?v=20260415-1"></script>
+    <script src="script.js?v=20260415-2"></script>
   </body>
 </html>
