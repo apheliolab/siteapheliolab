@@ -1172,15 +1172,6 @@ h3 {
   color: #a63f24;
 }
 
-.submit-frame {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  border: 0;
-  opacity: 0;
-  pointer-events: none;
-}
-
 .footer {
   padding: 48px 20px 56px;
   background: var(--bg);

@@ -106,7 +106,13 @@ if (leadForm) {
     }
 
     try {
-      HTMLFormElement.prototype.submit.call(leadForm);
+      const formData = new FormData(leadForm);
+
+      await fetch(leadForm.action, {
+        method: "POST",
+        mode: "no-cors",
+        body: new URLSearchParams(formData),
+      });
 
       if (window.fbq) {
         window.fbq("track", "Lead");
