@@ -4,60 +4,37 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="noindex, nofollow" />
-    <meta
-      name="description"
-      content="Mensagem enviada com sucesso para a equipe da Aphelio Lab."
-    />
+    <meta name="description" content="Mensagem enviada com sucesso para a equipe da Aphelio Lab." />
     <title>Mensagem enviada | Aphelio Lab</title>
     <link rel="icon" type="image/png" href="assets/favicon.png" />
     <link rel="apple-touch-icon" href="assets/favicon.png" />
-    <link rel="preload" as="image" href="assets/aphelio-background.jpg" />
-    <link rel="stylesheet" href="styles.css?v=20260415-1" />
+    <link rel="stylesheet" href="styles.css?v=20260420-11" />
   </head>
   <body class="success-page">
-    <main class="success-main" aria-labelledby="success-title">
-      <section class="success-card">
-        <img
-          class="success-logo"
-          src="assets/aphelio-logo.png"
-          alt="Aphelio Lab"
-          width="778"
-          height="135"
-          decoding="async"
-        />
+    <main class="success-card" aria-labelledby="success-title">
+      <img class="success-logo" src="assets/aphelio-logo.png" alt="Aphelio Lab" width="260" />
 
-        <div class="success-check" aria-hidden="true">
-          <svg viewBox="0 0 72 72" focusable="false">
-            <circle cx="36" cy="36" r="30" />
-            <path d="m23 37 9 9 18-21" />
-          </svg>
-        </div>
+      <div class="success-check" aria-hidden="true">
+        <svg viewBox="0 0 72 72" focusable="false">
+          <circle cx="36" cy="36" r="30" />
+          <path d="m23 37 9 9 18-21" />
+        </svg>
+      </div>
 
-        <p class="success-processing">
-          Processamento concluído
-          <span></span>
-          <span></span>
-          <span></span>
-        </p>
+      <p class="eyebrow">Processamento concluído</p>
+      <h1 id="success-title">Mensagem enviada com sucesso!</h1>
+      <p>Recebemos suas informações e vamos continuar seu atendimento pelo WhatsApp.</p>
 
-        <h1 id="success-title">Mensagem enviada com sucesso!</h1>
-        <p class="success-subtitle">
-          Recebemos suas informações e nossa equipe já vai entrar em contato com você.
-        </p>
-        <p class="success-support">Fique atento ao seu WhatsApp ou e-mail nos próximos minutos.</p>
+      <div class="success-actions" aria-label="Próximos passos">
+        <a class="button secondary" href="/">Voltar para o site</a>
+        <a class="button primary" href="https://wa.me/5535992496959" target="_blank" rel="noopener noreferrer">
+          Falar agora no WhatsApp
+        </a>
+      </div>
 
-        <div class="success-actions" aria-label="Próximos passos">
-          <a class="button primary" href="/">Voltar para o site</a>
-          <a class="success-whatsapp" href="https://wa.me/5535992496959" target="_blank" rel="noopener noreferrer">
-            Falar agora no WhatsApp
-          </a>
-        </div>
-
-        <p class="success-trust">Atendimento rápido e personalizado pela Aphelio Lab</p>
-        <p class="success-countdown">
-          Você será encaminhado para o WhatsApp em <span id="success-count">10</span> segundos...
-        </p>
-      </section>
+      <p class="success-countdown">
+        Você será encaminhado para o WhatsApp em <span id="success-count">10</span> segundos...
+      </p>
     </main>
 
     <script>
