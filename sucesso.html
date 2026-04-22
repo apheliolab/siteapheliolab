@@ -8,11 +8,11 @@
     <title>Mensagem enviada | Aphelio Lab</title>
     <link rel="icon" type="image/png" href="assets/favicon.png" />
     <link rel="apple-touch-icon" href="assets/favicon.png" />
-    <link rel="stylesheet" href="styles.css?v=20260420-11" />
+    <link rel="stylesheet" href="styles.css?v=20260420-19" />
   </head>
   <body class="success-page">
     <main class="success-card" aria-labelledby="success-title">
-      <img class="success-logo" src="assets/aphelio-logo.png" alt="Aphelio Lab" width="260" />
+      <img class="success-logo" src="assets/aphelio-logo.png" alt="Aphelio Lab" width="260" decoding="async" />
 
       <div class="success-check" aria-hidden="true">
         <svg viewBox="0 0 72 72" focusable="false">
@@ -27,7 +27,7 @@
 
       <div class="success-actions" aria-label="Próximos passos">
         <a class="button secondary" href="/">Voltar para o site</a>
-        <a class="button primary" href="https://wa.me/5535992496959" target="_blank" rel="noopener noreferrer">
+        <a class="button primary" id="whatsapp-link" href="https://wa.me/5535999096959" target="_blank" rel="noopener noreferrer">
           Falar agora no WhatsApp
         </a>
       </div>
@@ -39,8 +39,43 @@
 
     <script>
       const countElement = document.getElementById("success-count");
-      const whatsappUrl = "https://wa.me/5535992496959";
+      const whatsappLink = document.getElementById("whatsapp-link");
+      const whatsappNumber = "5535999096959";
+      const message = ["Olá, vim da landing page..."];
+      const params = new URLSearchParams(window.location.search);
       let seconds = 10;
+
+      const appendLeadContext = (leadContext) => {
+        if (leadContext.nicho) {
+          message.push(`Nicho: ${leadContext.nicho}`);
+        }
+
+        if (leadContext.necessidade) {
+          message.push(`Necessidade: ${leadContext.necessidade}`);
+        }
+      };
+
+      const urlLeadContext = {
+        nicho: params.get("nicho") || "",
+        necessidade: params.get("necessidade") || "",
+      };
+
+      if (urlLeadContext.nicho || urlLeadContext.necessidade) {
+        appendLeadContext(urlLeadContext);
+      } else {
+        try {
+        const leadContext = JSON.parse(window.sessionStorage.getItem("aphelioLeadContext") || "{}");
+          appendLeadContext(leadContext);
+        } catch (error) {
+          // Keep the base message if the browser blocks session storage.
+        }
+      }
+
+      const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message.join("\n"))}`;
+
+      if (whatsappLink) {
+        whatsappLink.href = whatsappUrl;
+      }
 
       const countdown = window.setInterval(() => {
         seconds -= 1;

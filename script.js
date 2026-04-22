@@ -280,6 +280,16 @@ if (leadForm) {
 
     try {
       const formData = new FormData(leadForm);
+      const leadContext = {
+        nicho: String(formData.get("nicho") || "").trim(),
+        necessidade: String(formData.get("necessidade") || "").trim(),
+      };
+
+      try {
+        window.sessionStorage.setItem("aphelioLeadContext", JSON.stringify(leadContext));
+      } catch (storageError) {
+        // The success page still works without storage; it just opens WhatsApp with the base message.
+      }
 
       await fetch(leadForm.action, {
         method: "POST",
@@ -297,8 +307,18 @@ if (leadForm) {
       }
 
       window.setTimeout(() => {
+        const successParams = new URLSearchParams();
+
+        if (leadContext.nicho) {
+          successParams.set("nicho", leadContext.nicho);
+        }
+
+        if (leadContext.necessidade) {
+          successParams.set("necessidade", leadContext.necessidade);
+        }
+
         leadForm.reset();
-        window.location.assign("sucesso.html");
+        window.location.assign(`sucesso.html?${successParams.toString()}`);
       }, 700);
     } catch (error) {
       if (statusElement) {
